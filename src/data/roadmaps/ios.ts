@@ -1,0 +1,118 @@
+import { buildRoadmap } from '../build'
+
+export default buildRoadmap({
+  id: 'ios',
+  title: 'iOS Developer',
+  short: 'Craft native iPhone and iPad apps with Swift and SwiftUI.',
+  description:
+    'Learn Swift, design interfaces with SwiftUI, and work through data, concurrency, testing, and App Store release until you can ship apps people enjoy using.',
+  category: 'role',
+  accent: '#6366f1',
+  tags: ['mobile', 'swift', 'apple'],
+  query: 'ios development swift',
+  sections: [
+    {
+      title: 'Swift Language',
+      level: 'beginner',
+      description: 'A safe, expressive language built for Apple platforms.',
+      topics: [
+        ['Swift basics', 5, 'Constants, variables, type inference, strings, and control flow in a playground.', 'https://docs.swift.org/swift-book/documentation/the-swift-programming-language/'],
+        ['Optionals', 3, 'Represent missing values and unwrap them safely with if let, guard, and nil coalescing.'],
+        ['Structs, classes & enums', 4, 'Value versus reference semantics and enums with associated values.'],
+        ['Protocols & extensions', 4, 'Define capabilities, add behavior to existing types, and lean on protocol-oriented design.'],
+        ['Closures & generics', 4, 'Pass behavior around as values and write reusable, type-safe code.'],
+        ['Error handling', 2, 'throws, do/catch, Result, and designing clear error types.'],
+      ],
+    },
+    {
+      title: 'Xcode & Platform Fundamentals',
+      level: 'beginner',
+      description: 'The tools and rules of the Apple ecosystem.',
+      topics: [
+        ['Xcode essentials', 3, 'Projects, targets, schemes, the simulator, and the debugger.', 'https://developer.apple.com/documentation/xcode'],
+        ['App lifecycle & scenes', 3, 'How the system launches, backgrounds, and restores your app.'],
+        ['Human Interface Guidelines', 3, 'Apple’s expectations for layout, navigation, and platform conventions.', 'https://developer.apple.com/design/human-interface-guidelines/'],
+        ['Assets, signing & capabilities', 2, 'App icons, asset catalogs, bundle identifiers, and provisioning profiles.'],
+        ['Swift Package Manager', 2, 'Add third-party libraries and split your own code into packages.', 'https://www.swift.org/documentation/package-manager/'],
+      ],
+    },
+    {
+      title: 'SwiftUI',
+      level: 'beginner',
+      description: 'Declarative interfaces that adapt across Apple devices.',
+      topics: [
+        ['Views & modifiers', 5, 'Compose small views and style them with chained modifiers.', 'https://developer.apple.com/documentation/swiftui'],
+        ['State management', 5, '@State, @Binding, and the Observation framework for driving UI from data.'],
+        ['Layout stacks & grids', 4, 'HStack, VStack, ZStack, lazy grids, and adaptive layouts for different screen sizes.'],
+        ['Lists & navigation', 4, 'NavigationStack, lists, sheets, and programmatic navigation paths.'],
+        ['Forms & user input', 3, 'Text fields, pickers, toggles, focus handling, and validation.'],
+        ['SwiftUI animations', 3, 'Implicit and explicit animations, transitions, and matched geometry effects.', { kind: 'optional' }],
+      ],
+      project: { title: 'Recipe browser', description: 'Build a multi-screen SwiftUI app that lists recipes, shows details, and lets users mark favorites.' },
+    },
+    {
+      title: 'UIKit',
+      level: 'intermediate',
+      description: 'The older imperative framework still common in large codebases.',
+      topics: [
+        ['View controllers', 4, 'The UIViewController lifecycle and how screens are presented and dismissed.', { docs: 'https://developer.apple.com/documentation/uikit', kind: 'alternative' }],
+        ['Auto Layout', 4, 'Constraints, stack views, and building adaptive layouts in code or Interface Builder.', { kind: 'alternative' }],
+        ['Table & collection views', 4, 'Diffable data sources and compositional layouts for scrolling content.', { kind: 'alternative' }],
+        ['Mixing UIKit and SwiftUI', 2, 'Host SwiftUI inside UIKit and wrap UIKit views for SwiftUI.'],
+      ],
+    },
+    {
+      title: 'Data, Networking & Concurrency',
+      level: 'intermediate',
+      description: 'Load remote data and keep the UI responsive while you do.',
+      topics: [
+        ['URLSession & REST', 4, 'Make HTTP requests, handle status codes, and decode responses.', 'https://developer.apple.com/documentation/foundation/urlsession'],
+        ['Codable', 2, 'Map JSON to Swift types and customize keys and date formats.'],
+        ['async/await & tasks', 5, 'Structured concurrency, task groups, cancellation, and the main actor.', 'https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/'],
+        ['Actors & data races', 3, 'Protect shared state and satisfy strict concurrency checking.'],
+        ['SwiftData', 4, 'Persist models locally with a Swift-native persistence API.', 'https://developer.apple.com/documentation/swiftdata'],
+        ['Core Data', 4, 'The long-standing object graph and persistence framework you will see in older apps.', { kind: 'alternative' }],
+        ['Combine', 3, 'Apple’s reactive framework for publishers and subscribers.', { kind: 'optional' }],
+      ],
+      project: { title: 'Movie watchlist', description: 'Search a public movie API with async/await, save picks with SwiftData, and work fully offline after the first load.' },
+    },
+    {
+      title: 'App Architecture',
+      level: 'intermediate',
+      description: 'Organize code so features stay independent and testable.',
+      topics: [
+        ['MVVM in SwiftUI', 4, 'Separate presentation logic from views using observable models.'],
+        ['Dependency injection', 3, 'Pass services in through initializers and environment values instead of singletons.'],
+        ['Modularization', 3, 'Break an app into local Swift packages by feature or layer.'],
+        ['The Composable Architecture', 5, 'A unidirectional, reducer-based architecture popular in some teams.', { kind: 'alternative' }],
+        ['Keychain & secure storage', 2, 'Store tokens and secrets securely instead of in user defaults.'],
+      ],
+    },
+    {
+      title: 'Testing & Performance',
+      level: 'advanced',
+      description: 'Catch bugs early and keep apps smooth.',
+      topics: [
+        ['Unit testing', 4, 'Write tests with Swift Testing or XCTest and use test doubles for dependencies.', 'https://developer.apple.com/documentation/testing'],
+        ['UI testing', 3, 'Automate user flows with XCUITest and accessibility identifiers.'],
+        ['Instruments profiling', 4, 'Track down slow frames, memory leaks, and energy problems.'],
+        ['Accessibility on iOS', 3, 'VoiceOver labels, Dynamic Type, and contrast checks.', 'https://developer.apple.com/accessibility/'],
+        ['Snapshot testing', 2, 'Detect unintended visual changes by comparing rendered views.', { kind: 'optional' }],
+      ],
+    },
+    {
+      title: 'Shipping & Platform Features',
+      level: 'advanced',
+      description: 'Release, distribute, and integrate deeper with the system.',
+      topics: [
+        ['TestFlight beta testing', 2, 'Distribute builds to internal and external testers and gather feedback.', 'https://developer.apple.com/testflight/'],
+        ['App Store submission', 3, 'App Store Connect, metadata, screenshots, review guidelines, and phased releases.', 'https://developer.apple.com/app-store/review/guidelines/'],
+        ['CI/CD for iOS', 3, 'Automate builds and uploads with Xcode Cloud or fastlane.'],
+        ['Push notifications', 3, 'Register with APNs and handle remote and local notifications.'],
+        ['Widgets & App Intents', 4, 'Surface content on the home screen and expose actions to Siri and Shortcuts.', { kind: 'optional' }],
+        ['In-app purchases', 3, 'Sell subscriptions and unlocks with StoreKit.', { kind: 'optional' }],
+      ],
+      project: { title: 'Journal app release', description: 'Ship a journaling app with a widget, reminders, tests, and a TestFlight build ready for real testers.' },
+    },
+  ],
+})

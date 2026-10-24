@@ -1,0 +1,117 @@
+import { buildRoadmap } from '../build'
+
+export default buildRoadmap({
+  id: 'product-manager',
+  title: 'Product Manager',
+  short: 'Decide what to build, why it matters, and how to get it shipped.',
+  description:
+    'Develop the core skills of a product manager: discovering real customer problems, setting strategy, prioritizing ruthlessly, and leading teams to measurable results.',
+  category: 'role',
+  accent: '#d946ef',
+  tags: ['product', 'strategy', 'leadership'],
+  query: 'product management',
+  sections: [
+    {
+      title: 'Role Fundamentals',
+      level: 'beginner',
+      description: 'What product managers own and how they spend their time.',
+      topics: [
+        ['What a PM does', 2, 'Responsibilities, how the role differs across companies, and where it overlaps with design and engineering.'],
+        ['Product lifecycle', 2, 'Stages from idea to launch, growth, maturity, and retirement.'],
+        ['Working with cross-functional teams', 3, 'Partnering with engineers, designers, marketing, sales, and support without formal authority.'],
+        ['Business fundamentals', 4, 'Revenue models, unit economics, margins, and how products make money.'],
+        ['Technical literacy for PMs', 4, 'Enough about APIs, databases, and system trade-offs to hold useful conversations with engineers.'],
+      ],
+    },
+    {
+      title: 'Customer Discovery',
+      level: 'beginner',
+      description: 'Find problems worth solving before writing a single spec.',
+      topics: [
+        ['Customer interviews', 4, 'Ask about past behavior rather than opinions to uncover genuine needs.'],
+        ['Jobs-to-be-done framing', 3, 'Understand the progress customers are trying to make and what they hire products for.'],
+        ['Market & competitor research', 3, 'Size opportunities and map alternatives customers already use.'],
+        ['Opportunity solution trees', 3, 'Connect a desired outcome to opportunities, solutions, and experiments.', { kind: 'optional' }],
+        ['Personas & segments', 2, 'Group customers by needs and behavior to focus decisions.'],
+        ['Problem validation', 3, 'Test whether a problem is painful and frequent enough to justify building something.'],
+      ],
+      project: { title: 'Opportunity brief', description: 'Interview potential users in a niche, then write a one-page brief describing the problem, evidence, and target segment.' },
+    },
+    {
+      title: 'Strategy & Vision',
+      level: 'intermediate',
+      description: 'Set a direction the whole team can rally behind.',
+      topics: [
+        ['Product vision', 2, 'Describe the future you are building toward in a compelling, concrete way.'],
+        ['Product strategy', 4, 'Choose where to play and how to win, and say no to everything else.'],
+        ['Positioning', 2, 'Define who the product is for and why it beats the alternatives.'],
+        ['OKRs & goal setting', 3, 'Set measurable outcomes and align team work to them.'],
+        ['Roadmapping', 3, 'Communicate priorities over time with now/next/later or outcome-based roadmaps.'],
+        ['North Star metric', 2, 'Pick one metric that captures the value customers get from the product.', { kind: 'optional' }],
+      ],
+    },
+    {
+      title: 'Prioritization & Planning',
+      level: 'intermediate',
+      description: 'Pick the right work in the right order.',
+      topics: [
+        ['Prioritization frameworks', 3, 'RICE, value versus effort, and Kano, plus the judgment none of them replace.'],
+        ['Writing requirements', 3, 'PRDs, user stories, and acceptance criteria that explain the why as well as the what.'],
+        ['Agile & Scrum basics', 3, 'Sprints, backlogs, ceremonies, and the PM’s role in them.', 'https://scrumguides.org/'],
+        ['Kanban', 2, 'A flow-based alternative to sprints focused on limiting work in progress.', { kind: 'alternative' }],
+        ['Backlog management', 2, 'Keep the backlog groomed, sized, and honest about what will really happen.'],
+        ['Managing trade-offs', 3, 'Balance scope, time, quality, and technical debt with the team.'],
+      ],
+    },
+    {
+      title: 'Execution & Delivery',
+      level: 'intermediate',
+      description: 'Turn plans into shipped product.',
+      topics: [
+        ['Working with design', 3, 'Collaborate on flows and prototypes and give actionable feedback.'],
+        ['Working with engineering', 3, 'Clarify requirements, unblock decisions, and respect estimates.'],
+        ['MVPs & iterative delivery', 3, 'Ship the smallest useful version and improve based on evidence.'],
+        ['Product tooling', 2, 'Issue trackers, docs, and whiteboards that keep work visible.'],
+        ['Risk management', 2, 'Spot value, usability, feasibility, and viability risks early.'],
+      ],
+      project: { title: 'Feature spec and plan', description: 'Write a full PRD for a feature, break it into user stories, prioritize them, and plan an MVP release.' },
+    },
+    {
+      title: 'Data & Experimentation',
+      level: 'advanced',
+      description: 'Use evidence to decide and to learn.',
+      topics: [
+        ['Product metrics', 3, 'Acquisition, activation, retention, revenue, and referral metrics and what moves them.'],
+        ['Product analytics tools', 3, 'Build funnels, cohorts, and dashboards in tools like Amplitude or Mixpanel.'],
+        ['SQL for PMs', 5, 'Answer your own data questions without waiting on an analyst.', { kind: 'optional' }],
+        ['A/B testing', 4, 'Form hypotheses, size experiments, and interpret results without fooling yourself.'],
+        ['Qualitative feedback loops', 2, 'Combine support tickets, reviews, and sales notes with quantitative data.'],
+      ],
+    },
+    {
+      title: 'Go-to-Market & Growth',
+      level: 'advanced',
+      description: 'Launch well and keep users coming back.',
+      topics: [
+        ['Launch planning', 3, 'Coordinate marketing, sales enablement, support, and documentation for a release.'],
+        ['Pricing & packaging', 3, 'Decide tiers, value metrics, and how to test pricing changes.'],
+        ['Growth loops', 3, 'Design self-reinforcing mechanisms for acquisition and engagement.'],
+        ['Onboarding & activation', 3, 'Help new users reach their first moment of value quickly.'],
+        ['Product-led growth', 2, 'Let the product itself drive acquisition and expansion.', { kind: 'optional' }],
+      ],
+    },
+    {
+      title: 'Leadership & Communication',
+      level: 'advanced',
+      description: 'Influence people and grow as a product leader.',
+      topics: [
+        ['Stakeholder management', 3, 'Keep executives and partners informed, aligned, and invested.'],
+        ['Storytelling & presentations', 3, 'Make a clear, persuasive case for decisions with narrative and data.'],
+        ['Decision making', 2, 'Decide with incomplete information and document why.'],
+        ['Negotiation & conflict', 2, 'Resolve disagreements about priorities without damaging relationships.'],
+        ['Product interviews & career growth', 3, 'Prepare for product sense, execution, and behavioral interviews.'],
+      ],
+      project: { title: 'Strategy presentation', description: 'Build a product strategy deck with vision, metrics, and a six-month roadmap, then present it to peers for critique.' },
+    },
+  ],
+})

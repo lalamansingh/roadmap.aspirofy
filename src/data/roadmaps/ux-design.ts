@@ -1,0 +1,116 @@
+import { buildRoadmap } from '../build'
+
+export default buildRoadmap({
+  id: 'ux-design',
+  title: 'UX Designer',
+  short: 'Research, design, and validate products people find easy to use.',
+  description:
+    'Build the habits of a UX designer: understand users through research, shape ideas into flows and prototypes, and prove with testing that your designs actually work.',
+  category: 'role',
+  accent: '#fb7185',
+  tags: ['design', 'research', 'ux'],
+  query: 'ux design',
+  sections: [
+    {
+      title: 'Design Foundations',
+      level: 'beginner',
+      description: 'The mindset and vocabulary behind user-centered work.',
+      topics: [
+        ['What UX design covers', 2, 'How UX relates to UI, product design, research, and content, and what a designer does day to day.'],
+        ['Human-centered design process', 3, 'The repeating loop of understanding, defining, ideating, prototyping, and testing.'],
+        ['Usability heuristics', 3, 'Widely used rules of thumb for spotting interface problems quickly.', 'https://www.nngroup.com/articles/ten-usability-heuristics/'],
+        ['Cognitive psychology basics', 3, 'Attention, memory limits, mental models, and why people skim instead of read.'],
+        ['Design laws & principles', 2, 'Fitts’s law, Hick’s law, proximity, and other patterns that explain user behavior.', { kind: 'optional' }],
+      ],
+    },
+    {
+      title: 'User Research',
+      level: 'beginner',
+      description: 'Learn what people actually need before you design anything.',
+      topics: [
+        ['Research planning', 3, 'Turn vague questions into research goals, pick a method, and recruit the right participants.'],
+        ['User interviews', 4, 'Write a discussion guide, ask open questions, and avoid leading participants.'],
+        ['Surveys', 2, 'Gather quantitative signal at scale without writing biased questions.'],
+        ['Contextual inquiry', 3, 'Observe people doing real work in their own environment.', { kind: 'optional' }],
+        ['Competitive analysis', 2, 'Review how other products solve the same problem and where they fall short.'],
+        ['Synthesis & affinity mapping', 3, 'Cluster observations into themes and turn them into insights the team can act on.'],
+      ],
+      project: { title: 'Discovery study', description: 'Interview five people about a daily frustration, synthesize the findings, and present three evidence-backed opportunities.' },
+    },
+    {
+      title: 'Defining the Problem',
+      level: 'beginner',
+      description: 'Frame what to solve and for whom.',
+      topics: [
+        ['Personas', 2, 'Summarize research into realistic archetypes rather than invented stereotypes.'],
+        ['Jobs to be done', 2, 'Describe what users are trying to accomplish independent of any particular solution.', { kind: 'alternative' }],
+        ['Journey mapping', 3, 'Visualize steps, emotions, and pain points across an end-to-end experience.'],
+        ['Problem statements', 2, 'Write focused “how might we” questions that open up solution space.'],
+        ['Service blueprints', 3, 'Map front-stage and back-stage processes that shape the customer experience.', { kind: 'optional' }],
+      ],
+    },
+    {
+      title: 'Information Architecture & Interaction',
+      level: 'intermediate',
+      description: 'Organize content and define how people move through it.',
+      topics: [
+        ['Information architecture', 4, 'Structure, labeling, and navigation systems that help people find things.'],
+        ['Card sorting & tree testing', 3, 'Validate categories and menu structures with real users.'],
+        ['User flows & task flows', 3, 'Diagram the paths someone takes to complete a goal, including edge cases.'],
+        ['Sketching & wireframing', 4, 'Explore many layouts quickly at low fidelity before committing to details.'],
+        ['Interaction patterns', 3, 'Common components and behaviors users already understand, and when to break them.'],
+        ['UX writing', 3, 'Clear labels, helpful errors, and microcopy that guides without getting in the way.'],
+      ],
+    },
+    {
+      title: 'Visual & UI Design',
+      level: 'intermediate',
+      description: 'Make interfaces clear, consistent, and pleasant.',
+      topics: [
+        ['Visual hierarchy & layout', 4, 'Use size, contrast, spacing, and grids to direct attention.'],
+        ['Typography', 3, 'Choose typefaces, sizes, and line lengths that read well on screens.'],
+        ['Color & contrast', 3, 'Build palettes with purpose and meet contrast requirements.'],
+        ['Figma', 6, 'Frames, auto layout, components, variants, and collaboration in the most common design tool.', 'https://help.figma.com/'],
+        ['Design systems', 4, 'Tokens, reusable components, and documentation that keep teams consistent.'],
+        ['Penpot or Sketch', 3, 'Other design tools you may meet depending on team or budget.', { kind: 'alternative' }],
+      ],
+    },
+    {
+      title: 'Prototyping & Usability Testing',
+      level: 'intermediate',
+      description: 'Put designs in front of people and learn from what they do.',
+      topics: [
+        ['Interactive prototypes', 4, 'Link screens, add transitions, and simulate real behavior for testing.'],
+        ['Moderated usability testing', 4, 'Run task-based sessions, encourage thinking aloud, and take useful notes.'],
+        ['Unmoderated & remote testing', 2, 'Use online platforms to test faster with more participants.'],
+        ['Reporting findings', 3, 'Prioritize issues by severity and recommend concrete fixes.'],
+        ['Motion & micro-interactions', 3, 'Use animation to explain state changes and give feedback.', { kind: 'optional' }],
+      ],
+      project: { title: 'Redesign and test', description: 'Pick a clunky signup or checkout flow, redesign it as a clickable prototype, and run usability tests before and after.' },
+    },
+    {
+      title: 'Accessibility & Inclusive Design',
+      level: 'advanced',
+      description: 'Design for the full range of people who use your product.',
+      topics: [
+        ['WCAG essentials', 4, 'The success criteria most relevant to designers: contrast, focus, text alternatives, and more.', 'https://www.w3.org/WAI/standards-guidelines/wcag/'],
+        ['Designing for assistive tech', 3, 'How screen readers, magnifiers, and switch devices change what a good design looks like.'],
+        ['Inclusive design practices', 2, 'Consider age, language, situation, and ability from the start rather than as an afterthought.'],
+        ['Accessibility annotations', 2, 'Document headings, reading order, and focus behavior for engineers.'],
+      ],
+    },
+    {
+      title: 'Metrics, Strategy & Collaboration',
+      level: 'advanced',
+      description: 'Connect design work to outcomes and work well with others.',
+      topics: [
+        ['UX metrics', 3, 'Task success, time on task, satisfaction scores, and how to pick meaningful measures.'],
+        ['A/B testing for designers', 3, 'Read experiment results and understand what they can and cannot tell you.'],
+        ['Design handoff', 2, 'Specs, redlines, and working alongside engineers through implementation.'],
+        ['Facilitating workshops', 3, 'Lead critiques, ideation sessions, and design sprints with mixed teams.'],
+        ['Portfolio & case studies', 5, 'Tell the story of your process, decisions, and impact rather than just showing screens.'],
+      ],
+      project: { title: 'End-to-end case study', description: 'Take a self-chosen problem from research to tested high-fidelity design and write it up as a portfolio case study.' },
+    },
+  ],
+})

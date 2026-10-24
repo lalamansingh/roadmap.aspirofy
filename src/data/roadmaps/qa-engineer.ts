@@ -1,0 +1,118 @@
+import { buildRoadmap } from '../build'
+
+export default buildRoadmap({
+  id: 'qa-engineer',
+  title: 'QA Engineer',
+  short: 'Find bugs early and build automated safety nets for software teams.',
+  description:
+    'Learn to think like a tester, design effective test cases, and automate checks across web, API, and mobile so teams can release quickly without breaking things.',
+  category: 'role',
+  accent: '#14b8a6',
+  tags: ['testing', 'automation', 'quality'],
+  query: 'software testing qa',
+  sections: [
+    {
+      title: 'Testing Fundamentals',
+      level: 'beginner',
+      description: 'Core ideas that apply no matter what you test.',
+      topics: [
+        ['Why software testing matters', 2, 'The cost of defects, the difference between QA and testing, and the tester’s mindset.'],
+        ['Software development lifecycle', 2, 'Waterfall, agile, and where testing fits in each.'],
+        ['Testing levels', 3, 'Unit, integration, system, and acceptance testing and who usually owns each.'],
+        ['Testing types', 3, 'Functional, regression, smoke, sanity, and non-functional testing.'],
+        ['The test pyramid', 2, 'Balance many fast low-level tests against fewer slow end-to-end ones.'],
+        ['ISTQB foundation concepts', 4, 'Common terminology and principles used across the industry.', { kind: 'optional' }],
+      ],
+    },
+    {
+      title: 'Manual Testing Skills',
+      level: 'beginner',
+      description: 'Systematic techniques for finding problems by hand.',
+      topics: [
+        ['Requirements analysis', 3, 'Read specs critically and spot ambiguities before code is written.'],
+        ['Test case design', 4, 'Write clear, repeatable cases with preconditions, steps, and expected results.'],
+        ['Equivalence partitioning & boundaries', 3, 'Choose a small set of inputs that cover a large range of behavior.'],
+        ['Exploratory testing', 3, 'Learn the product and test it at the same time using charters and time-boxed sessions.'],
+        ['Bug reporting', 2, 'Write reproducible reports with severity, priority, evidence, and environment details.'],
+        ['Test management tools', 2, 'Track cases, runs, and defects in a test management or issue tracking tool.'],
+      ],
+      project: { title: 'Test plan for a web app', description: 'Write a test plan and twenty test cases for a public demo store, execute them, and log the bugs you find.' },
+    },
+    {
+      title: 'Technical Foundations',
+      level: 'beginner',
+      description: 'The technical skills that make testers more effective.',
+      topics: [
+        ['Programming for testers', 6, 'Variables, functions, loops, and objects in JavaScript, TypeScript, Python, or Java.'],
+        ['Web fundamentals for QA', 3, 'HTML, the DOM, HTTP, cookies, and browser DevTools for investigating issues.', 'https://developer.mozilla.org/en-US/docs/Learn'],
+        ['Git basics', 3, 'Clone repositories, branch, commit, and open pull requests for test code.', 'https://git-scm.com/doc'],
+        ['SQL for testing', 3, 'Query databases to set up data and verify results behind the UI.'],
+        ['Command line basics', 2, 'Navigate files, run scripts, and read logs from a terminal.'],
+      ],
+    },
+    {
+      title: 'API Testing',
+      level: 'intermediate',
+      description: 'Test the layer most apps are built on.',
+      topics: [
+        ['REST API concepts', 3, 'Methods, status codes, headers, authentication, and JSON payloads.'],
+        ['Postman', 3, 'Build collections, use environments, and write assertions on responses.', 'https://learning.postman.com/docs/'],
+        ['Automated API tests', 4, 'Write API tests in code using an HTTP client and a test runner.'],
+        ['Contract testing', 3, 'Catch breaking changes between services with consumer-driven contracts.', { kind: 'optional' }],
+        ['GraphQL testing', 2, 'Query and validate GraphQL endpoints and their schemas.', { kind: 'optional' }],
+      ],
+    },
+    {
+      title: 'UI Test Automation',
+      level: 'intermediate',
+      description: 'Automate browser checks that run on every change.',
+      topics: [
+        ['Playwright', 6, 'Cross-browser automation with auto-waiting, tracing, and parallel runs.', 'https://playwright.dev/docs/intro'],
+        ['Cypress', 5, 'An in-browser test runner with time-travel debugging.', { docs: 'https://docs.cypress.io/', kind: 'alternative' }],
+        ['Selenium WebDriver', 5, 'The long-standing standard for browser automation in many languages.', { docs: 'https://www.selenium.dev/documentation/', kind: 'alternative' }],
+        ['Locator strategies', 3, 'Pick stable selectors based on roles, labels, and test ids rather than brittle paths.'],
+        ['Page object pattern', 3, 'Encapsulate pages and components so tests stay readable and easy to maintain.'],
+        ['Test data & fixtures', 3, 'Create, seed, and clean up data so tests are independent and repeatable.'],
+        ['Handling flaky tests', 3, 'Diagnose timing issues, shared state, and environment noise that cause intermittent failures.'],
+      ],
+      project: { title: 'E2E suite', description: 'Automate the main user journeys of a demo app with Playwright using page objects and run them across three browsers.' },
+    },
+    {
+      title: 'Mobile Testing',
+      level: 'intermediate',
+      description: 'Quality on phones and tablets.',
+      topics: [
+        ['Mobile testing challenges', 2, 'Device fragmentation, OS versions, networks, and interruptions.'],
+        ['Emulators, simulators & device farms', 2, 'Choose between virtual devices, real devices, and cloud device labs.'],
+        ['Appium', 5, 'Automate native and hybrid apps on Android and iOS from one API.', { docs: 'https://appium.io/docs/en/latest/', kind: 'optional' }],
+        ['Native mobile frameworks', 4, 'Espresso and XCUITest for fast, platform-specific UI tests.', { kind: 'alternative' }],
+      ],
+    },
+    {
+      title: 'Non-Functional Testing',
+      level: 'advanced',
+      description: 'Check how well the system works, not just whether it works.',
+      topics: [
+        ['Performance & load testing', 5, 'Measure response times and throughput under load with a tool such as k6 or JMeter.', 'https://grafana.com/docs/k6/latest/'],
+        ['Security testing basics', 4, 'Common web vulnerabilities and how to probe for them safely.', 'https://owasp.org/www-project-top-ten/'],
+        ['Accessibility testing', 3, 'Combine automated scanners with keyboard and screen reader checks.'],
+        ['Visual regression testing', 2, 'Compare screenshots to catch unintended layout changes.', { kind: 'optional' }],
+        ['Usability & compatibility testing', 2, 'Verify behavior across browsers, devices, and real user expectations.'],
+      ],
+    },
+    {
+      title: 'CI/CD & Quality Strategy',
+      level: 'advanced',
+      description: 'Make quality part of how the whole team ships.',
+      topics: [
+        ['Tests in CI pipelines', 4, 'Run suites automatically on pull requests with GitHub Actions or a similar service.', 'https://docs.github.com/en/actions'],
+        ['Test reporting & dashboards', 2, 'Publish results and trends so failures are visible and actionable.'],
+        ['Test environments & containers', 3, 'Spin up consistent environments with Docker for reliable runs.'],
+        ['Shift-left & shift-right testing', 2, 'Test earlier in development and monitor quality in production.'],
+        ['Risk-based test strategy', 3, 'Decide what to test, how deeply, and what to automate based on impact.'],
+        ['Quality metrics', 2, 'Defect escape rate, coverage, flakiness, and lead time, and their limits.'],
+      ],
+      project: { title: 'Quality pipeline', description: 'Wire API, UI, and performance tests into a CI pipeline that gates merges and publishes a test report.' },
+    },
+  ],
+})
