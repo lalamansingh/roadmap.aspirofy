@@ -1,7 +1,7 @@
 import { Check, ChevronLeft, ChevronRight, Copy, ExternalLink, Code, Hammer, LayoutGrid, Columns3, Link2, Rocket, Search, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Badge, Card, EmptyState, Stat, levelMeta } from '../components/ui'
+import { Badge, Card, EmptyState, Stat, levelMeta, PageHeader } from '../components/ui'
 import { roadmapById, roadmaps } from '../data'
 import type { Level } from '../data/types'
 import { allProjects, getEntry, useProjects, type ProjectItem, type ProjectStatus } from '../lib/projectStore'
@@ -9,13 +9,13 @@ import { allProjects, getEntry, useProjects, type ProjectItem, type ProjectStatu
 const statuses: ProjectStatus[] = ['idea', 'building', 'shipped']
 
 const projectStatusMeta: Record<ProjectStatus, { label: string; className: string; dot: string }> = {
-  idea: { label: 'Idea', className: 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300', dot: 'bg-slate-400' },
+  idea: { label: 'Idea', className: 'bg-slate-100 text-slate-700 dark:bg-white/5 dark:text-slate-300', dot: 'bg-slate-400' },
   building: { label: 'Building', className: 'bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-300', dot: 'bg-amber-500' },
   shipped: { label: 'Shipped', className: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-300', dot: 'bg-emerald-500' },
 }
 
 const levels: ('all' | Level)[] = ['all', 'beginner', 'intermediate', 'advanced']
-const selectCls = 'rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-900'
+const selectCls = 'rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm dark:border-white/10 dark:bg-white/[.03]'
 const btnCls = 'inline-flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-medium'
 
 export default function Projects() {
@@ -65,8 +65,7 @@ export default function Projects() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
-      <h1 className="text-3xl font-bold">Projects</h1>
-      <p className="mt-1 text-slate-500">Milestone builds from every roadmap plus extra ideas. Track them from idea to shipped and grow your portfolio.</p>
+      <PageHeader icon={<Hammer size={22} />} eyebrow="Portfolio" title="Projects" subtitle="Milestone builds from every roadmap plus extra ideas. Track them from idea to shipped and grow your portfolio." />
 
       <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <Stat label="Shipped" value={shipped.length} icon={<Rocket size={14} />} />
@@ -76,7 +75,7 @@ export default function Projects() {
       </div>
 
       <div className="mt-6 flex flex-col gap-3 lg:flex-row lg:items-center">
-        <label className="flex flex-1 items-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 dark:border-slate-700 dark:bg-slate-900">
+        <label className="flex flex-1 items-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 dark:border-white/10 dark:bg-white/[.03]">
           <Search size={16} className="text-slate-400" />
           <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search projects, skills, roadmaps…" className="flex-1 bg-transparent outline-none" />
         </label>
@@ -92,9 +91,9 @@ export default function Projects() {
             <option value="all">All statuses</option>
             {statuses.map((s) => <option key={s} value={s}>{projectStatusMeta[s].label}</option>)}
           </select>
-          <div className="hidden overflow-hidden rounded-lg border border-slate-300 md:flex dark:border-slate-700">
+          <div className="hidden overflow-hidden rounded-lg border border-slate-300 md:flex dark:border-white/10">
             {(['board', 'grid'] as const).map((v) => (
-              <button key={v} onClick={() => setView(v)} aria-label={`${v} view`} className={`flex items-center gap-1 px-3 py-2 text-sm font-medium capitalize ${view === v ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900' : 'bg-white text-slate-600 hover:bg-slate-100 dark:bg-slate-900 dark:text-slate-300'}`}>
+              <button key={v} onClick={() => setView(v)} aria-label={`${v} view`} className={`flex items-center gap-1 px-3 py-2 text-sm font-medium capitalize ${view === v ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900' : 'bg-white text-slate-600 hover:bg-slate-100 dark:bg-white/[.03] dark:text-slate-300'}`}>
                 {v === 'board' ? <Columns3 size={14} /> : <LayoutGrid size={14} />} {v}
               </button>
             ))}
@@ -111,7 +110,7 @@ export default function Projects() {
               {statuses.map((s) => {
                 const col = list.filter((p) => getEntry(projects, p.id).status === s)
                 return (
-                  <div key={s} className="rounded-xl bg-slate-100/70 p-3 dark:bg-slate-900/50">
+                  <div key={s} className="rounded-xl bg-slate-100/70 p-3 dark:bg-white/[.02]">
                     <div className="mb-3 flex items-center gap-2 px-1 text-sm font-semibold">
                       <span className={`h-2 w-2 rounded-full ${projectStatusMeta[s].dot}`} />
                       {projectStatusMeta[s].label}
@@ -119,7 +118,7 @@ export default function Projects() {
                     </div>
                     <div className="flex max-h-[70vh] flex-col gap-3 overflow-y-auto">
                       {col.map(renderCard)}
-                      {col.length === 0 && <div className="rounded-lg border border-dashed border-slate-300 p-6 text-center text-xs text-slate-500 dark:border-slate-700">Nothing here yet</div>}
+                      {col.length === 0 && <div className="rounded-lg border border-dashed border-slate-300 p-6 text-center text-xs text-slate-500 dark:border-white/10">Nothing here yet</div>}
                     </div>
                   </div>
                 )
@@ -183,7 +182,7 @@ function ProjectCard({ project: p, status, onMove, onOpen }: { project: ProjectI
       tabIndex={0}
       onClick={onOpen}
       onKeyDown={(e) => { if (e.key === 'Enter') onOpen() }}
-      className="relative cursor-pointer rounded-xl border border-slate-200 bg-white p-4 text-left transition hover:border-slate-400 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-600"
+      className="relative cursor-pointer rounded-2xl border border-slate-200/80 bg-white p-4 text-left transition hover:border-slate-400 hover:shadow-md dark:border-white/[.07] dark:bg-white/[.03] dark:hover:border-slate-600"
     >
       <div className="absolute inset-x-0 top-0 h-1 rounded-t-xl" style={{ background: r?.accent }} />
       <div className="flex items-start justify-between gap-2">
@@ -200,7 +199,7 @@ function ProjectCard({ project: p, status, onMove, onOpen }: { project: ProjectI
         <Badge className={projectStatusMeta[status].className}>{projectStatusMeta[status].label}</Badge>
         <div className="ml-auto flex gap-1">
           {prev && (
-            <button onClick={(e) => { e.stopPropagation(); onMove(prev) }} className={`${btnCls} bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300`}>
+            <button onClick={(e) => { e.stopPropagation(); onMove(prev) }} className={`${btnCls} bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-white/5 dark:text-slate-300`}>
               <ChevronLeft size={12} /> {projectStatusMeta[prev].label}
             </button>
           )}
@@ -232,11 +231,11 @@ function ProjectEditor({ id, onClose }: { id: string; onClose: () => void }) {
 
   if (!project) return null
   const save = () => { updateProject(id, { repoUrl: repoUrl.trim(), demoUrl: demoUrl.trim(), notes }); onClose() }
-  const inputCls = 'mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-slate-500 dark:border-slate-700 dark:bg-slate-950'
+  const inputCls = 'mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-slate-500 dark:border-white/10 dark:bg-slate-950'
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4" onClick={onClose}>
-      <div role="dialog" aria-modal="true" aria-label={project.title} onClick={(e) => e.stopPropagation()} className="w-full max-w-lg rounded-xl border border-slate-200 bg-white p-5 shadow-xl dark:border-slate-800 dark:bg-slate-900">
+      <div role="dialog" aria-modal="true" aria-label={project.title} onClick={(e) => e.stopPropagation()} className="w-full max-w-lg rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xl dark:border-white/[.07] dark:bg-white/[.03]">
         <div className="flex items-start justify-between gap-3">
           <div>
             <h2 className="text-lg font-bold">{project.title}</h2>
@@ -247,12 +246,12 @@ function ProjectEditor({ id, onClose }: { id: string; onClose: () => void }) {
         <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">{project.description}</p>
         {project.skills.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-1">
-            {project.skills.map((s) => <Badge key={s} className="bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">{s}</Badge>)}
+            {project.skills.map((s) => <Badge key={s} className="bg-slate-100 text-slate-600 dark:bg-white/5 dark:text-slate-300">{s}</Badge>)}
           </div>
         )}
         <div className="mt-4 flex gap-1">
           {statuses.map((s) => (
-            <button key={s} onClick={() => setStatus(id, s)} className={`flex-1 rounded-lg px-3 py-1.5 text-sm font-medium ${entry.status === s ? projectStatusMeta[s].className + ' ring-2 ring-slate-400/40' : 'bg-slate-50 text-slate-500 hover:bg-slate-100 dark:bg-slate-800/50'}`}>
+            <button key={s} onClick={() => setStatus(id, s)} className={`flex-1 rounded-lg px-3 py-1.5 text-sm font-medium ${entry.status === s ? projectStatusMeta[s].className + ' ring-2 ring-slate-400/40' : 'bg-slate-50 text-slate-500 hover:bg-slate-100 dark:bg-white/[.04]'}`}>
               {projectStatusMeta[s].label}
             </button>
           ))}
@@ -271,7 +270,7 @@ function ProjectEditor({ id, onClose }: { id: string; onClose: () => void }) {
           {entry.shippedAt && <> · Shipped {new Date(entry.shippedAt).toLocaleDateString()}</>}
         </div>
         <div className="mt-4 flex justify-end gap-2">
-          <button onClick={onClose} className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800">Cancel</button>
+          <button onClick={onClose} className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/5">Cancel</button>
           <button onClick={save} className="rounded-lg bg-slate-900 px-3 py-2 text-sm font-medium text-white dark:bg-white dark:text-slate-900">Save</button>
         </div>
       </div>

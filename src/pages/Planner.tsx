@@ -1,7 +1,7 @@
 import { CalendarCheck, CalendarDays, CalendarRange, Clock, Download, Flag, Hammer, Printer, Target } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Badge, Card, EmptyState, levelMeta, Stat, statusMeta } from '../components/ui'
+import { Badge, Card, EmptyState, levelMeta, Stat, statusMeta, PageHeader } from '../components/ui'
 import { roadmapById, roadmaps, topicKey } from '../data'
 import type { Roadmap, Section, Status, Topic } from '../data/types'
 import { isStarted } from '../lib/analytics'
@@ -180,20 +180,17 @@ export default function Planner() {
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
 
-  const inputCls = 'w-full rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm dark:border-slate-700 dark:bg-slate-900'
+  const inputCls = 'w-full rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm dark:border-white/10 dark:bg-white/[.03]'
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h1 className="flex items-center gap-2 text-3xl font-extrabold"><CalendarRange className="text-slate-400" /> Study Planner</h1>
-          <p className="mt-1 text-slate-600 dark:text-slate-400">A week-by-week schedule for the rest of <b>{roadmap.title}</b>, based on your progress.</p>
-        </div>
+        <PageHeader icon={<CalendarRange size={22} />} eyebrow="Planner" title="Study planner" subtitle={<>A week-by-week schedule for the rest of <b className="text-slate-700 dark:text-slate-200">{roadmap.title}</b>, built from your progress.</>} />
         <div className="flex gap-2 print:hidden">
           <button onClick={exportIcs} disabled={!weeks.length} className="flex items-center gap-1.5 rounded-lg bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 disabled:opacity-50 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200">
             <Download size={15} /> Export to calendar (.ics)
           </button>
-          <button onClick={() => window.print()} className="flex items-center gap-1.5 rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800">
+          <button onClick={() => window.print()} className="flex items-center gap-1.5 rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium hover:bg-slate-100 dark:border-white/10 dark:hover:bg-white/5">
             <Printer size={15} /> Print
           </button>
         </div>
@@ -271,7 +268,7 @@ export default function Planner() {
                     </div>
                     <span className="text-sm font-medium tabular-nums text-slate-500">{fmtHours(w.hours)}</span>
                   </div>
-                  <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800">
+                  <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-white/5">
                     <div className="h-full rounded-full" style={{ width: `${Math.min(100, (w.hours / hoursPerWeek) * 100)}%`, background: roadmap.accent }} />
                   </div>
                   <ul className="mt-3 space-y-2">
@@ -283,7 +280,7 @@ export default function Planner() {
                             <div className="mt-0.5 flex flex-wrap items-center gap-1 text-xs text-slate-500">
                               {e.item.status === 'in-progress' && <Badge className={statusMeta['in-progress'].className}>{statusMeta['in-progress'].label}</Badge>}
                               <Badge className={levelMeta[e.item.topic.level].className}>{levelMeta[e.item.topic.level].label}</Badge>
-                              {e.item.topic.kind !== 'core' && <Badge className="bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">{e.item.topic.kind}</Badge>}
+                              {e.item.topic.kind !== 'core' && <Badge className="bg-slate-100 text-slate-600 dark:bg-white/5 dark:text-slate-300">{e.item.topic.kind}</Badge>}
                               {e.continued && <span className="italic">continued</span>}
                               {e.continues && <span className="italic">continues →</span>}
                               <span className="truncate">{e.item.section.title}</span>

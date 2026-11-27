@@ -28,7 +28,7 @@ export default function ProjectStats() {
       </div>
       <div className="mt-3 grid grid-cols-3 gap-2">
         {(Object.keys(meta) as ProjectStatus[]).map((s) => (
-          <div key={s} className="rounded-lg bg-slate-50 p-2 text-center dark:bg-slate-800/50">
+          <div key={s} className="rounded-lg bg-slate-50 p-2 text-center dark:bg-white/[.04]">
             <div className="text-xl font-bold tabular-nums">{counts[s]}</div>
             <div className="flex items-center justify-center gap-1 text-xs text-slate-500">
               <span className={`h-1.5 w-1.5 rounded-full ${meta[s].dot}`} /> {meta[s].label}

@@ -1,7 +1,7 @@
 import { ArrowLeft, CheckCircle2, GraduationCap, RotateCcw, XCircle } from 'lucide-react'
 import { useState } from 'react'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
-import { Badge, Card, EmptyState, ProgressBar, levelMeta } from '../components/ui'
+import { Badge, Card, EmptyState, ProgressBar, levelMeta, PageHeader } from '../components/ui'
 import { roadmapById } from '../data'
 import { questionsFor } from '../data/quizzes'
 import type { Roadmap, Section } from '../data/types'
@@ -40,8 +40,7 @@ function SectionList({ roadmap }: { roadmap: Roadmap }) {
       <Link to={`/roadmaps/${roadmap.id}`} className="inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-900 dark:hover:text-white">
         <ArrowLeft size={14} /> {roadmap.title} roadmap
       </Link>
-      <h1 className="mt-2 flex items-center gap-2 text-3xl font-bold"><GraduationCap style={{ color: roadmap.accent }} /> {roadmap.title} quizzes</h1>
-      <p className="mt-1 text-slate-500">Check what stuck. Three quick questions per section, with explanations for every answer.</p>
+      <div className="mt-4"><PageHeader icon={<GraduationCap size={22} />} eyebrow="Quizzes" title={roadmap.title} subtitle="Check what stuck. Three quick questions per section, with explanations for every answer." /></div>
 
       <Card className="mt-6">
         <div className="flex items-end justify-between">
@@ -142,7 +141,7 @@ function QuizRunner({ roadmap, section }: { roadmap: Roadmap; section: Section }
             <button onClick={restart} className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200">
               <RotateCcw size={15} /> Retry
             </button>
-            <Link to={back} className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-semibold hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800">
+            <Link to={back} className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-semibold hover:bg-slate-100 dark:border-white/10 dark:hover:bg-white/5">
               Back to sections
             </Link>
           </div>
@@ -186,12 +185,12 @@ function QuizRunner({ roadmap, section }: { roadmap: Roadmap; section: Section }
           {q.options.map((opt, i) => {
             const correct = i === q.answer
             const state = !answered
-              ? 'border-slate-200 hover:border-slate-400 hover:bg-slate-50 dark:border-slate-700 dark:hover:border-slate-500 dark:hover:bg-slate-800'
+              ? 'border-slate-200 hover:border-slate-400 hover:bg-slate-50 dark:border-white/10 dark:hover:border-slate-500 dark:hover:bg-white/5'
               : correct
                 ? 'border-emerald-500 bg-emerald-50 text-emerald-900 dark:bg-emerald-500/15 dark:text-emerald-200'
                 : i === picked
                   ? 'border-rose-500 bg-rose-50 text-rose-900 dark:bg-rose-500/15 dark:text-rose-200'
-                  : 'border-slate-200 opacity-60 dark:border-slate-800'
+                  : 'border-slate-200 opacity-60 dark:border-white/[.07]'
             return (
               <button
                 key={i}

@@ -1,11 +1,11 @@
-import { AlertTriangle, Brain, CalendarClock, Clock, Flame, Gauge, Target, Trophy } from 'lucide-react'
+import { AlertTriangle, BarChart3, Brain, CalendarClock, Clock, Flame, Gauge, Target, Trophy } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import Heatmap from '../components/Heatmap'
 import ProjectStats from '../components/ProjectStats'
 import QuizStats from '../components/QuizStats'
-import { Card, EmptyState, ProgressBar, Stat, levelMeta } from '../components/ui'
+import { Card, EmptyState, ProgressBar, Stat, levelMeta, PageHeader } from '../components/ui'
 import { findTopic, roadmaps } from '../data'
 import {
   achievements, dailyActivity, dueReviews, estimateAccuracy, forecast, hourOfDay, isStarted, levelBreakdown,
@@ -46,13 +46,13 @@ export default function Dashboard() {
   if (events.length === 0) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-16">
-        <h1 className="text-3xl font-bold">Your learning analytics</h1>
+        <PageHeader icon={<BarChart3 size={22} />} eyebrow="Analytics" title="Your learning analytics" />
         <div className="mt-6">
           <EmptyState title="No activity yet">
             Open any roadmap and mark topics as learning or done, or start the study timer, and your analytics will appear here.
             <div className="mt-4 flex justify-center gap-2">
               <Link to="/roadmaps" className="rounded-lg bg-slate-900 px-4 py-2 font-semibold text-white dark:bg-white dark:text-slate-900">Pick a roadmap</Link>
-              <button onClick={() => useTracker.getState().seedDemo()} className="rounded-lg bg-amber-400 px-4 py-2 font-semibold text-slate-900">Load demo data</button>
+              <button onClick={() => useTracker.getState().seedDemo()} className="rounded-xl bg-brand-600 px-4 py-2 font-semibold text-white hover:bg-brand-500">Load demo data</button>
             </div>
           </EmptyState>
         </div>
@@ -73,11 +73,8 @@ export default function Dashboard() {
   return (
     <div className="mx-auto max-w-7xl space-y-6 px-4 py-10">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">{name ? `${name}'s analytics` : 'Your learning analytics'}</h1>
-          <p className="text-slate-500">Everything you study is tracked here: progress, consistency, pace, and retention.</p>
-        </div>
-        <div className="flex rounded-lg border border-slate-300 bg-white p-0.5 dark:border-slate-700 dark:bg-slate-900">
+        <PageHeader icon={<BarChart3 size={22} />} eyebrow="Analytics" title={name ? `${name}'s analytics` : 'Your learning analytics'} subtitle="Everything you study is tracked here: progress, consistency, pace and retention." />
+        <div className="flex rounded-lg border border-slate-300 bg-white p-0.5 dark:border-white/10 dark:bg-white/[.03]">
           {ranges.map((r) => (
             <button key={r.days} onClick={() => setRange(r.days)} className={`rounded-md px-3 py-1.5 text-sm font-medium ${range === r.days ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900' : 'text-slate-600 dark:text-slate-300'}`}>{r.label}</button>
           ))}
@@ -130,7 +127,7 @@ export default function Dashboard() {
             <div className="font-semibold">Weekly goal</div>
             <label className="flex items-center gap-1 text-xs text-slate-500">
               <Target size={13} />
-              <input type="number" min={1} max={80} value={weeklyGoalHours} onChange={(e) => setWeeklyGoal(Math.max(1, Number(e.target.value)))} className="w-12 rounded border border-slate-300 bg-transparent px-1 py-0.5 text-right dark:border-slate-700" /> h/week
+              <input type="number" min={1} max={80} value={weeklyGoalHours} onChange={(e) => setWeeklyGoal(Math.max(1, Number(e.target.value)))} className="w-12 rounded border border-slate-300 bg-transparent px-1 py-0.5 text-right dark:border-white/10" /> h/week
             </label>
           </div>
           <div className="mt-6 flex items-center justify-center">
@@ -195,7 +192,7 @@ export default function Dashboard() {
                   const st = roadmapStats(r, progress)
                   const fc = forecast(r, events, progress)
                   return (
-                    <tr key={r.id} className="border-t border-slate-100 dark:border-slate-800">
+                    <tr key={r.id} className="border-t border-slate-100 dark:border-white/[.07]">
                       <td className="py-3"><Link to={`/roadmaps/${r.id}`} className="font-medium hover:underline">{r.title}</Link></td>
                       <td className="w-1/4 py-3 pr-4"><div className="flex items-center gap-2"><ProgressBar value={st.pct} color={r.accent} /><span className="w-9 text-right tabular-nums">{st.pct}%</span></div></td>
                       <td className="py-3 text-right tabular-nums">{st.done}/{st.total}</td>
@@ -293,7 +290,7 @@ export default function Dashboard() {
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
           {badges.map((b) => (
-            <div key={b.id} className={`rounded-xl border p-3 text-center ${b.unlocked ? 'border-amber-300 bg-amber-50 dark:border-amber-500/40 dark:bg-amber-500/10' : 'border-slate-200 opacity-60 dark:border-slate-800'}`}>
+            <div key={b.id} className={`rounded-xl border p-3 text-center ${b.unlocked ? 'border-amber-300 bg-amber-50 dark:border-amber-500/40 dark:bg-amber-500/10' : 'border-slate-200 opacity-60 dark:border-white/[.07]'}`}>
               <div className={`text-3xl ${b.unlocked ? '' : 'grayscale'}`}>{b.icon}</div>
               <div className="mt-1 text-sm font-semibold">{b.title}</div>
               <div className="text-[11px] text-slate-500">{b.description}</div>
@@ -331,7 +328,7 @@ function TopicList({ title, hint, keys, empty, icon }: { title: string; hint: st
           if (!f) return null
           return (
             <li key={k}>
-              <Link to={`/roadmaps/${f.roadmap.id}?topic=${f.topic.id}`} className="flex items-center justify-between rounded-lg px-2 py-1.5 text-sm hover:bg-slate-50 dark:hover:bg-slate-800">
+              <Link to={`/roadmaps/${f.roadmap.id}?topic=${f.topic.id}`} className="flex items-center justify-between rounded-lg px-2 py-1.5 text-sm hover:bg-slate-50 dark:hover:bg-white/5">
                 <span className="truncate">{f.topic.title}</span>
                 <span className="ml-2 shrink-0 text-xs text-slate-500">{f.roadmap.title}</span>
               </Link>

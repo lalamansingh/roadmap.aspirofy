@@ -198,9 +198,9 @@ export default function CommandPalette() {
         aria-label="Command palette"
         onMouseDown={(e) => e.stopPropagation()}
         onKeyDown={onKeyDown}
-        className="w-full max-w-xl overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-900"
+        className="w-full max-w-xl overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-2xl dark:border-white/[.07] dark:bg-white/[.03]"
       >
-        <div className="flex items-center gap-2 border-b border-slate-200 px-4 dark:border-slate-800">
+        <div className="flex items-center gap-2 border-b border-slate-200 px-4 dark:border-white/[.07]">
           <Search size={18} className="shrink-0 text-slate-400" />
           <input
             ref={inputRef}
@@ -214,7 +214,7 @@ export default function CommandPalette() {
             aria-autocomplete="list"
             className="h-12 flex-1 bg-transparent text-sm outline-none placeholder:text-slate-400"
           />
-          <kbd className="rounded border border-slate-200 px-1.5 text-[10px] font-medium text-slate-500 dark:border-slate-700">Esc</kbd>
+          <kbd className="rounded border border-slate-200 px-1.5 text-[10px] font-medium text-slate-500 dark:border-white/10">Esc</kbd>
         </div>
 
         <div ref={listRef} id="command-palette-list" role="listbox" aria-label="Results" className="max-h-[50vh] overflow-y-auto p-2">
@@ -245,7 +245,7 @@ export default function CommandPalette() {
                   onMouseMove={() => !selected && setActive(i)}
                   onClick={(e) => choose(item, e.shiftKey)}
                   className={`flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm ${
-                    selected ? 'bg-slate-100 dark:bg-slate-800' : ''
+                    selected ? 'bg-slate-100 dark:bg-white/5' : ''
                   }`}
                 >
                   <Icon size={16} className="shrink-0 text-slate-400" />
@@ -266,7 +266,7 @@ export default function CommandPalette() {
           })}
         </div>
 
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-slate-200 px-4 py-2 text-[11px] text-slate-500 dark:border-slate-800">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-slate-200 px-4 py-2 text-[11px] text-slate-500 dark:border-white/[.07]">
           <span><Kbd>↑</Kbd> <Kbd>↓</Kbd> navigate</span>
           <span><Kbd>Enter</Kbd> open</span>
           <span><Kbd>Shift</Kbd>+<Kbd>Enter</Kbd> toggle topic done</span>
@@ -278,5 +278,5 @@ export default function CommandPalette() {
 }
 
 function Kbd({ children }: { children: ReactNode }) {
-  return <kbd className="rounded border border-slate-200 px-1 font-sans dark:border-slate-700">{children}</kbd>
+  return <kbd className="rounded border border-slate-200 px-1 font-sans dark:border-white/10">{children}</kbd>
 }

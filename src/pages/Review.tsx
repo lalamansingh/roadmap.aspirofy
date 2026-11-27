@@ -1,7 +1,7 @@
 import { Brain, CheckCircle2 } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, EmptyState } from '../components/ui'
+import { Card, EmptyState, PageHeader } from '../components/ui'
 import { findTopic } from '../data'
 import { dueReviews } from '../lib/analytics'
 import { useTracker } from '../lib/store'
@@ -25,8 +25,7 @@ export default function Review() {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-10">
-      <h1 className="flex items-center gap-2 text-3xl font-bold"><Brain className="text-violet-500" /> Spaced review</h1>
-      <p className="mt-1 text-slate-500">Completed topics come back at growing intervals. Try to recall the key ideas, then rate yourself honestly.</p>
+      <PageHeader icon={<Brain size={22} />} eyebrow="Retention" title="Spaced review" subtitle="Completed topics come back at growing intervals. Recall the key ideas, then rate yourself honestly." />
       <div className="mt-4 flex gap-4 text-sm text-slate-500">
         <span><b className="text-slate-900 dark:text-white">{queue.length}</b> due now</span>
         <span><b className="text-slate-900 dark:text-white">{doneCount}</b> reviewed this session</span>
@@ -49,7 +48,7 @@ export default function Review() {
               <button onClick={() => setRevealed(true)} className="mt-6 w-full rounded-lg bg-slate-900 py-3 font-semibold text-white hover:bg-slate-700 dark:bg-white dark:text-slate-900">Reveal summary & my notes</button>
             ) : (
               <>
-                <div className="mt-6 rounded-lg bg-slate-50 p-4 text-sm dark:bg-slate-800">
+                <div className="mt-6 rounded-lg bg-slate-50 p-4 text-sm dark:bg-white/5">
                   <div className="font-semibold">Summary</div>
                   <p className="mt-1">{current.topic.description}</p>
                   {notes[queue[0]] && (<><div className="mt-3 font-semibold">Your notes</div><p className="mt-1 whitespace-pre-wrap">{notes[queue[0]]}</p></>)}

@@ -4,8 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Aspirofy Roadmaps — community-style learning roadmaps with built-in progress analytics." />
-    <title>Aspirofy Roadmaps</title>
+    <meta name="theme-color" content="#0b0b1a" />
+    <title>Aspirofy Roadmaps: learn with a plan, grow with data</title>
+    <meta name="description" content="24 step-by-step learning roadmaps for developers, designers and product people, with study analytics, quizzes, a planner and spaced review. Free, private, no sign-up." />
+    <meta property="og:title" content="Aspirofy Roadmaps" />
+    <meta property="og:description" content="Step-by-step learning roadmaps with built-in progress analytics. Know what to learn, and measure how you grow." />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400..700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <script>
+      try {
+        var t = localStorage.getItem('aspirofy-theme')
+        if (t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.classList.add('dark')
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>
